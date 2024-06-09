@@ -1,0 +1,322 @@
+/* html,body{
+  height:100%;
+  width:100%;
+}
+#mainContainer{
+  height:100%;
+  width:100%;
+} */
+#logo{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+#logo img {
+  height: 50px;
+  width: 50px;
+}
+#img2{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#mainContainer{
+  position: relative;
+  height:100vh;
+  width:100%;
+}
+.mapContainer{
+  height:100%;
+  width:100%;
+  position: absolute;
+}
+
+#header{
+  height:10vh;
+  width:100%;
+  /*background-color:#466799;*/
+  background: rgb(131,58,180);
+background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+  position: relative;
+}
+#map{
+  height:80vh;
+  width:100%;
+  position: relative;
+}
+#footer{
+  height:10vh;
+  width:100%;
+  /*background-color:#466799;*/
+  background: rgb(34,193,195);
+background: linear-gradient(0deg, rgba(34,193,195,1) 20%, rgba(253,187,45,1) 100%);
+  position: relative;
+}
+#spanHeader{
+  display: inline-block;
+  line-height:normal;
+  position: absolute;
+  color: aliceblue;
+  top:50%;
+  left:50%;
+  margin-top: -25px;
+  margin-left: -86px;
+  font-weight: bold;
+  font-size: 24px;
+}
+#spanLatLong{
+  position:absolute;
+  top:75%;
+  right:3px;
+  font-size: x-small;
+  color: aliceblue;
+}
+#spanActiveLayer{
+  position:absolute;
+  top:75%;
+  left:3px;
+  font-size: x-small;
+  color: aliceblue;
+}
+
+.layer-switcher{
+  right:7px;
+  top:7px;
+  font-size: smaller;
+}
+
+.layer-switcher.shown{
+  width: auto;
+  height: auto;
+}
+
+.layer-switcher button{
+  background-size: 30px 30px;
+  background-color: black;
+  background-image: url(./Resource/layers.png);
+  background-position: center;
+}
+.ol-control{
+  background-color: black;
+}
+
+.layer-switcher button:hover{
+  background-color: #cccccc;
+}
+
+.layer-switcher .group button{
+  background-size: 16px 16px;
+}
+
+/*style to ruler**/
+#btnMeasureLength{
+  z-index: 2000;
+  position: absolute;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  left: 2px;
+  bottom: 70px;
+  border: none;
+  color: black;
+}
+#btnPrint{
+  z-index: 2000;
+  position: absolute;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  left: 2px;
+  bottom: 130px;
+  border: none;
+  color: black;
+}
+#btnPrint:hover{
+  color: red;
+}
+
+#btnFratureInfo{
+  z-index: 2000;
+  position: absolute;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  left: 2px;
+  bottom: 200px;
+  border: none;
+  color: black;
+}
+/*when click button become red */
+#btnFratureInfo.clicked{
+  color: red;
+}
+#btnMeasureLength.clicked{
+  color: red;
+}
+#btnStartEditing.clicked{
+  color: red;
+}
+#btnSetting.clicked{
+  color: red;
+}
+/*measure styling*/
+.ol-tooltip {
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  color: white;
+  padding: 4px 8px;
+  opacity: 0.7;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.ol-tooltip-measure {
+  opacity: 1;
+  font-weight: bold;
+}
+.ol-tooltip-static {
+  background-color: #ffcc33;
+  color: black;
+  border: 1px solid white;
+}
+.ol-tooltip-measure:before,
+.ol-tooltip-static:before {
+  border-top: 6px solid rgba(0, 0, 0, 0.5);
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  margin-left: -7px;
+  left: 50%;
+}
+.ol-tooltip-static:before {
+  border-top-color: #ffcc33;
+}
+
+/*end measure styling*/
+
+/*styling to button in footer*/
+
+.btn-group{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -19px;
+  margin-left: -140px;
+}
+
+/*styling to setting page*/
+
+.model{
+  z-index: 2020;
+  height: 90vh;
+  width:100%;
+  display: none;
+  overflow-y: auto;
+  position: absolute;
+}
+
+.lblSetting{
+  padding : 25px 0px 0px 0px;
+}
+
+#divSettings select{
+  width:100%;
+  height:40px;
+  border:1px solid black;
+  border-radius: 5px;
+  padding: 5px 0px 0px 0px;
+}
+
+#divSettings select option{
+  width: auto
+}
+#setting{
+  background-color: whitesmoke;
+  height:80vh;
+}
+#setting2{
+  background-color: whitesmoke;
+  height:80vh;
+}
+#setting3{
+  background-color: whitesmoke;
+  height:80vh;
+}
+.divSubHeader{
+  height: 10vh;
+  width: 100%;
+  color:antiquewhite;
+  /*background-color: #466799;*/
+  background: rgb(131,58,180);
+background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+  position: relative;
+  text-align: center;
+}
+.spanSubHeading{
+  display: inline-block;
+  line-height:normal;
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  left: 50%;
+  margin-left: -44px;
+  font-weight: bold;
+  font-size: 24px;
+  color: whitesmoke;
+}
+
+#btnSettingClose{
+  position: absolute;
+  left: 90%;
+}
+
+/*Adding style to the popup*/
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(22, 85, 167, 0.6);
+  pad: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 280px;
+}
+
+.ol-popup:after, .ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ol-popup:after {
+  border-top-color: red;
+  border-width: 10px;
+  margin-left: -10px;
+  left: 48px;
+}
+
+.ol-popup:before {
+  border-top-color: red;
+  border-width: 11px;
+  margin-left: -11px;
+  left: 48px;
+}
+
+.ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2p;
+  right: 8px;
+}
+
+.ol-popup-closer:after {
+  content: "X";
+}

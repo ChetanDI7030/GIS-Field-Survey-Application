@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Land Survey</title>
+    <link
+      rel="stylesheet"
+      href="./lib/bootstrap-5.0.2-dist/css/bootstrap.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./lib/fontawesome-free-6.4.0-web/css/all.css"
+    />
+    <link rel="stylesheet" href="./lib/layerswitcher/ol-layerswitcher.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./lib/ol/ol.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="mainContainer">
+      <div class="mapContainer">
+        <div id="header">
+          <div id="logo"><img src="./Resource/online-survey.png" alt="">
+            <img src="./Resource/spatial.png" alt="" id="img2">
+          </div>
+          <span id="spanHeader">GIS Field Survey</span>
+          <span id="spanActiveLayer"></span>
+          <span id="spanLatLong"></span>
+        </div>
+        <div id="map">
+          <button id="btnMeasureLength" title="Measure">
+            <i class="fas fa-ruler-combined fa-2x"></i>
+          </button>
+          <button id="btnPrint" title="Print">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              class="bi bi-printer-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"
+              />
+              <path
+                d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"
+              />
+            </svg>
+          </button>
+          <button id="btnFratureInfo" title="Info">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+          </button>
+        </div>
+        <div id="footer">
+          <div class="btn-group btn-group-justified">
+            <button id="btnMap" class="btn btn-dark btn-footer" title="Map">
+              <i class="fas fa-earth-asia"></i>
+            </button>
+            <button
+              id="btnStartEditing"
+              class="btn btn-dark btn-footer"
+              title="Start Editing"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button
+              id="btnAddFeature"
+              class="btn btn-dark btn-footer"
+              title="Add Feature"
+            >
+              <i class="fas fa-square-plus"></i>
+            </button>
+            <button
+              id="btnModifyFeature"
+              class="btn btn-dark btn-footer"
+              title="Modify Feature"
+            >
+              <i class="fas fa-draw-polygon"></i>
+            </button>
+            <button
+              id="btnModifyAttribute"
+              class="btn btn-dark btn-footer"
+              title="Modify Attribute"
+            >
+              <i class="fas fa-table"></i>
+            </button>
+            <button
+              id="btnDeleteFeature"
+              class="btn btn-dark btn-footer"
+              title="Delete Feature"
+            >
+              <i class="far fa-trash-can"></i>
+            </button>
+            <button
+              id="btnSetting"
+              class="btn btn-dark btn-footer"
+              title="Setting"
+            >
+              <i class="fas fa-screwdriver-wrench"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="divSettings" class="model">
+        <div class="divSubHeader">
+          <span class="spanSubHeading">Setting</span>
+          <button
+            id="btnSettingClose"
+            class="btn btn-dark btn-footer"
+            title="Close"
+          >
+            <i class="fas fa-circle-xmark"></i>
+          </button>
+        </div>
+        <div id="setting">
+          <div class="container">
+            <div class="col-12">
+              <h4 class="lblSetting">Active Layer</h4>
+            </div>
+            <div class="col-12 div-no-padding">
+              <select name="selLayer" id="selLayer"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="attributeUpdate" class="model">
+        <div class="divSubHeader">
+          <span class="spanSubHeading">Attributes</span>
+        </div>
+        <div id="setting2">
+          <div id="attributeContainer"></div>
+          <div id="saveCancelControle">
+            <div class="container">
+              <div class="col-md-12 text-center">
+                <button
+                  id="btnSave"
+                  class="btn btn-dark btn-footer"
+                  title="Save"
+                >
+                  <i class="fas fa-save"></i>
+                </button>
+                <button
+                  id="btnCancel"
+                  class="btn btn-dark btn-footer"
+                  title="Cancel"
+                >
+                  <i class="fas fa-circle-xmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+      </div>
+      <div id="printOptionsDiv" class="model">
+        <div class="divSubHeader">
+          <span class="spanSubHeading">Print</span>
+        </div>
+        <div id="setting3">
+          <form class="form">
+            <label for="format">Page size </label>
+            <select id="format" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+              <option value="a0">A0 (slow)</option>
+              <option value="a1">A1</option>
+              <option value="a2">A2</option>
+              <option value="a3">A3</option>
+              <option value="a4" selected>A4</option>
+              <option value="a5">A5 (fast)</option>
+            </select>
+            <label for="resolution">Resolution </label>
+            <select id="resolution" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+              <option value="72">72 dpi (fast)</option>
+              <option value="150">150 dpi</option>
+              <option value="200" selected>200 dpi</option>
+              <option value="300">300 dpi (slow)</option>
+            </select>
+            <label for="scale">Scale </label>
+            <select id="scale" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+              <option value="500">1:500000</option>
+              <option value="250" selected>1:250000</option>
+              <option value="100">1:100000</option>
+              <option value="50">1:50000</option>
+              <option value="25">1:25000</option>
+              <option value="10">1:10000</option>
+            </select>
+          </form>
+          <button id="export-pdf" class="btn btn-primary">Export PDF</button>
+        </div>
+      </div>
+    </div>
+    <script src="./lib/ol/ol.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
+    <script src="./lib/jquery-3.7.0.min.js"></script>
+    <script src="./lib/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
+    <script src="./lib/fontawesome-free-6.4.0-web/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="./lib/layerswitcher/ol-layerswitcher.js"></script>
+    <script src="./lib/leafLetProvider.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/elm-pep@1.0.6/dist/elm-pep.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
